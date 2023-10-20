@@ -15,10 +15,10 @@ while (balance > 0)
     int selectedNumber = int.Parse(ReadLine());
     
     // Om nummer är minder än noll alltså -1 eller högre än 36 säger consolen ifrån 
-    if (selectedNumber < 0 || selectedNumber > 36)§
+    if (selectedNumber < 0 || selectedNumber > 36)
     {
         WriteLine("Felaktigt nummer. Välj ett nummer mellan 0 och 36.");
-        continue;
+        break;
     }
     // Consolen ber spelaren om hur mycket man vill satsa
     Write("Placera din satsning: $");
@@ -27,7 +27,7 @@ while (balance > 0)
     if (betAmount > balance)
     {
         WriteLine("Tyvärr! du har inte tillräckligt med saldo för denna satsning.");
-        continue;
+        break;
     }
 
     
