@@ -30,5 +30,28 @@ while (balance > 0)
         break;
     }
 
-    
+        // Genererar ett random nummer som ger vinst
+    Random random = new Random();
+    int winNumber = random.Next(0,37);
+
+    //If sats kollar om det blev vinst
+    if (selectedNumber == winNumber)
+    {   
+        //Beräknar vinsten
+        int winAmount = betAmount * 35;
+        WriteLine($"Grattis du vann{winAmount}$!");
+
+        //Lägger till vinsten till saldot
+        balance += winAmount; 
+    }
+        //Om det inte blir vinst
+    else
+    {
+        WriteLine("Tyvärr det blev ingen vinst denna gång!");
+
+        //Tar bort förlusten från saldot 
+        balance -= betAmount; 
+    }
+
+    WriteLine($"Ditt nya saldo är: {balance}$");
 }
