@@ -43,6 +43,7 @@ while (balance > 0)
 
         //Lägger till vinsten till saldot
         balance += winAmount; 
+        WriteLine($"Ditt nya saldo är: {balance}$");
     }
         //Om det inte blir vinst
     else
@@ -53,5 +54,5 @@ while (balance > 0)
         balance -= betAmount; 
     }
 
-    WriteLine($"Ditt nya saldo är: {balance}$");
+        WriteLine($"Ditt nya saldo är: {balance}$");
 }
