@@ -55,4 +55,55 @@ while (balance > 0)
     }
 
         WriteLine($"Ditt nya saldo är: {balance}$");
+     // Alternativ att spela spel med färg
+   
+
+    while (true)
+    {
+        Console.WriteLine($"Your balance: ${balance}");
+        Console.Write("Enter your bet (red/black): ");
+        string bet = Console.ReadLine().ToLower();
+
+        if (bet != "red" && bet != "black")
+        {
+            Console.WriteLine("Invalid bet. Choose red or black.");
+            continue;
+        }
+
+        Console.Write("Enter your bet amount: $");
+        if (!int.TryParse(Console.ReadLine(), out int rouletteBetAmount) || rouletteBetAmount <= 0 || rouletteBetAmount > balance)
+        {
+            Console.WriteLine("Invalid bet amount.");
+            continue;
+        }
+
+        int winningNumber = new Random().Next(0, 36);
+        bool isRed = (winningNumber > 0 && winningNumber <= 10) || (winningNumber > 18 && winningNumber <= 28);
+        bool isBlack = !isRed;
+
+        Console.WriteLine($"The winning number is {winningNumber}.");
+        Console.WriteLine(isRed ? "Red" : "Black");
+
+        if ((bet == "red" && isRed) || (bet == "black" && isBlack))
+        {
+            balance += rouletteBetAmount;
+            Console.WriteLine($"You win ${rouletteBetAmount}!");
+        }
+        else
+        {
+            balance -= rouletteBetAmount;
+            Console.WriteLine($"You lose ${rouletteBetAmount}.");
+        }
+    }
+
+    Console.WriteLine("Game over. Your balance is $0.");
+    Console.Write("Play again? (yes/no): ");
+    string playAgain = Console.ReadLine().ToLower();
+    if (playAgain != "yes")
+    {
+        break;
+    }
+
+
+Console.WriteLine("Thanks for playing!");
 }
