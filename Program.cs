@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using static System.Console;
 
 // Totala Saldo att börja med
@@ -111,13 +111,13 @@ Console.WriteLine("Thanks for playing!");
 
 
 
-
+*/
 
 
 
 
 /*
-
+/*
 using System;
 using System.Threading;
 using static System.Console;
@@ -242,5 +242,146 @@ class Program
 
         }
     }
+}*/
+// Ivy code : jag lägga till Switch meny baserad på Senat code:
+using System;
+using System.Threading;
+using static System.Console;
+
+class Program
+{
+    static void Main()
+    {
+        WriteLine("Välkommen till Grupp 2 Roulett-spel!");
+
+        Thread.Sleep(2000);
+
+        WriteLine("Vänligen skriv hur mycket du vill sätta in på din Konto!: ");
+        int balance = int.Parse(ReadLine());
+
+        WriteLine($"Ditt nuvarande Saldo är: ${balance}");
+
+        Thread.Sleep(2000);
+
+        while (balance > 0)
+        {
+            Write("Vänligen välj för att spela: \n" +
+                  "1. Slump\n" +
+                  "2. Udda\n" +
+                  "3. Jemt\n" +
+                  "4. Svart\n" +
+                  "5. Red\n" +
+                  "0. Logga ut\n" +
+                  "Ditt val: ");
+            int choice = int.Parse(ReadLine());
+
+            switch (choice)
+            {
+                case 0:
+                    return;
+
+                case 1:
+                    PlayRoulette("slump", balance);
+                    break;
+
+                case 2:
+                    PlayRoulette("udda", balance);
+                    break;
+
+                case 3:
+                    PlayRoulette("jemt", balance);
+                    break;
+
+                case 4:
+                    PlayRoulette("svart", balance);
+                    break;
+
+                case 5:
+                    PlayRoulette("red", balance);
+                    break;
+
+                default:
+                    WriteLine("Ogiltigt val. Välj ett nummer mellan 0 och 5.");
+                    break;
+            }
+
+            WriteLine($"Ditt saldo är: ${balance}");
+
+            if (balance == 0)
+            {
+                Write("Spela igen? (ja/nej): ");
+                string playAgain = Console.ReadLine().ToLower();
+
+                if (playAgain == "ja")
+                {
+                    return;
+                }
+                else if (playAgain == "nej")
+                {
+                    break;
+                }
+                WriteLine("Tack för att du spelade !");
+            }
+
+            WriteLine("Fyll på ditt konto $0.");
+        }
+    }
+
+    static void PlayRoulette(string selected, int balance)
+    {
+        Write($"Placera din satsning för {selected}: $");
+        int betAmount = int.Parse(ReadLine());
+
+        if (betAmount > balance)
+        {
+            WriteLine("Tyvärr! Du har inte tillräckligt med saldo för denna satsning.");
+            return;
+        }
+
+        Random random = new Random();
+        int winNumber = random.Next(0, 37);
+
+        if (selected == "slump")
+        {
+            Write("Ange ditt eget nummer (0-36): ");
+            int slump = int.Parse(Console.ReadLine());
+
+            if (slump < 0 || slump > 36)
+            {
+                WriteLine("Ogiltigt nummer. Välj ett nummer mellan 0 och 36.");
+                return;
+            }
+        }
+
+        string winColor = (winNumber == 0 || (winNumber >= 11 && winNumber <= 18) || (winNumber >= 29 && winNumber <= 36)) ? "svart" : "red";
+
+        Thread.Sleep(2000);
+
+        if ((selected == "slump" && betAmount == winNumber) ||
+            (selected != "slump" && int.TryParse(selected, out int selectedNumber) && selectedNumber == winNumber))
+        {
+            int winAmount = betAmount * 35;
+            WriteLine($"Grattis! Du vann {winAmount}$ vinnande {winNumber} ({winColor}).");
+            balance += winAmount;
+        }
+        else if ((selected == "red" || selected == "svart") && selected == winColor)
+        {
+            int winAmount = betAmount * 2;
+            WriteLine($"Grattis! Du vann på färgen {winColor} ({winNumber}).");
+            balance += betAmount;
+        }
+        else if ((selected == "jemt" || selected == "udda") && ((selected == "jemt" && winNumber % 2 == 0) || (selected == "udda" && winNumber % 2 == 1)))
+        {
+            WriteLine($"Grattis! Du vann på {selected} ({winNumber} - {winColor}).");
+            balance += betAmount;
+        }
+        else
+        {
+            Thread.Sleep(2000);
+            WriteLine($"Tyvärr, du förlorade {betAmount}$ vinnande nummer {winNumber} ({winColor}).");
+            balance -= betAmount;
+        }
+    }
 }
+
 
