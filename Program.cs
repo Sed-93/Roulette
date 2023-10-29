@@ -281,23 +281,23 @@ class Program
                     return;
 
                 case 1:
-                    PlayRoulette("slump", balance);
+                    PlayRoulette("slump", ref balance);
                     break;
 
                 case 2:
-                    PlayRoulette("udda", balance);
+                    PlayRoulette("udda",ref balance);
                     break;
 
                 case 3:
-                    PlayRoulette("jemt", balance);
+                    PlayRoulette("jemt", ref balance);
                     break;
 
                 case 4:
-                    PlayRoulette("svart", balance);
+                    PlayRoulette("svart", ref balance);
                     break;
 
                 case 5:
-                    PlayRoulette("red", balance);
+                    PlayRoulette("red", ref balance);
                     break;
 
                 default:
@@ -305,7 +305,7 @@ class Program
                     break;
             }
 
-            WriteLine($"Ditt saldo är: ${balance}");
+        //    WriteLine($"Ditt saldo är: ${balance}");
 
             if (balance == 0)
             {
@@ -323,11 +323,11 @@ class Program
                 WriteLine("Tack för att du spelade !");
             }
 
-            WriteLine("Fyll på ditt konto $0.");
+           // WriteLine("Fyll på ditt konto $0.");
         }
     }
 
-    static void PlayRoulette(string selected, int balance)
+    static void PlayRoulette(string selected,ref int balance)
     {
         Write($"Placera din satsning för {selected}: $");
         int betAmount = int.Parse(ReadLine());
@@ -363,23 +363,27 @@ class Program
             int winAmount = betAmount * 35;
             WriteLine($"Grattis! Du vann {winAmount}$ vinnande {winNumber} ({winColor}).");
             balance += winAmount;
+            WriteLine($"Ditt saldo är: ${balance}");
         }
         else if ((selected == "red" || selected == "svart") && selected == winColor)
         {
             int winAmount = betAmount * 2;
             WriteLine($"Grattis! Du vann på färgen {winColor} ({winNumber}).");
             balance += betAmount;
+            WriteLine($"Ditt saldo är: ${balance}");
         }
         else if ((selected == "jemt" || selected == "udda") && ((selected == "jemt" && winNumber % 2 == 0) || (selected == "udda" && winNumber % 2 == 1)))
         {
             WriteLine($"Grattis! Du vann på {selected} ({winNumber} - {winColor}).");
             balance += betAmount;
+            WriteLine($"Ditt saldo är: ${balance}");
         }
         else
         {
             Thread.Sleep(2000);
             WriteLine($"Tyvärr, du förlorade {betAmount}$ vinnande nummer {winNumber} ({winColor}).");
             balance -= betAmount;
+            WriteLine($"Ditt saldo är: ${balance}");
         }
     }
 }
