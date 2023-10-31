@@ -244,6 +244,11 @@ class Program
     }
 }*/
 // Ivy code : jag lägga till Switch meny baserad på Senat code:
+
+
+
+
+
 using System;
 using System.Threading;
 using static System.Console;
@@ -252,6 +257,7 @@ class Program
 {
     static void Main()
     {
+        While (true) {
         WriteLine("Välkommen till Grupp 2 Roulett-spel!");
 
         Thread.Sleep(2000);
@@ -387,5 +393,5 @@ class Program
         }
     }
 }
-
+}
 
