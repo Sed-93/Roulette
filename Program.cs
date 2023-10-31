@@ -349,17 +349,14 @@ class Program
         int slump = -1; 
     // deklarerar slump variable ,säkerställer att `slump` har ett känt värde innan man försöker läsa från input 
         if (selected == "slump")
-        {
-            Write("Ange ditt eget nummer (0-36): ");
-            int slump = int.Parse(Console.ReadLine());
-
-            if (slump < 0 || slump > 36)
             {
-                WriteLine("Ogiltigt nummer. Välj ett nummer mellan 0 och 36.");
-                return;
+                Write("Ange ditt eget nummer (0-36): ");
+                if (!int.TryParse(ReadLine(), out slump) || slump < 0 || slump > 36)
+                {
+                    WriteLine("Ogiltigt nummer. Välj ett nummer mellan 0 och 36.");
+                    return;
+                }
             }
-        }
-
         string winColor = (winNumber == 0 || (winNumber >= 11 && winNumber <= 18) || (winNumber >= 29 && winNumber <= 36)) ? "svart" : "red";
 
         Thread.Sleep(2000);
@@ -374,7 +371,7 @@ class Program
         }
         else if ((selected == "red" || selected == "svart") && selected == winColor)
         {
-           // int winAmount = betAmount * 2;
+       
             WriteLine($"Grattis! Du vann på färgen {winColor} ({winNumber}).");
             balance += betAmount;
             WriteLine($"Ditt saldo är: ${balance}");
