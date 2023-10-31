@@ -113,7 +113,7 @@ class Program
 
         if ((selected == "slump" && slump == winNumber) )
         {
-            int winAmount = betAmount * 36;
+            int winAmount = betAmount * 35;
             WriteLine($"Grattis! Du vann {winAmount}$ vinnande {winNumber} ({winColor}).");
             balance += winAmount;
             WriteLine($"Ditt saldo är: ${balance}");
@@ -128,7 +128,7 @@ class Program
         else if ((selected == "jemt" || selected == "udda") && ((selected == "jemt" && winNumber % 2 == 0) || (selected == "udda" && winNumber % 2 == 1)))
         {
             WriteLine($"Grattis! Du vann på {selected} ({winNumber} - {winColor}).");
-            balance += betAmount;
+            balance += betAmount ;
             WriteLine($"Ditt saldo är: ${balance}");
         }
         else
