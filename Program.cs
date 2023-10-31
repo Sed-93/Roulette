@@ -256,7 +256,7 @@ class Program
 {
     static void Main()
     {
-        While (true) { 
+        while (true) { 
         WriteLine("Välkommen till Grupp 2 Roulett-spel!");
 
         Thread.Sleep(2000);
@@ -320,7 +320,7 @@ class Program
                 if (playAgain == "nej")
                 {
                     WriteLine("Tack för att du spelade !");
-                    return;exit hela program
+                    return;  //exit hela program
                 }
                 else if (playAgain == "ja")
                 {
