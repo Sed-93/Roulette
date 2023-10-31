@@ -261,7 +261,7 @@ class Program
 
         Thread.Sleep(2000);
 
-        WriteLine("Vänligen skriv hur mycket du vill sätta in på din Konto!: ");
+        WriteLine("Vänligen skriv hur mycket du vill sätta in på ditt Konto!: ");
         int balance = int.Parse(ReadLine());
 
         WriteLine($"Ditt nuvarande Saldo är: ${balance}");
