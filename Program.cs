@@ -257,7 +257,7 @@ class Program
 {
     static void Main()
     {
-       While (true) { 
+        While (true) { 
         WriteLine("Välkommen till Grupp 2 Roulett-spel!");
 
         Thread.Sleep(2000);
