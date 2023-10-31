@@ -33,7 +33,6 @@ while (balance > 0)
         // Genererar ett random nummer som ger vinst
     Random random = new Random();
     int winNumber = random.Next(0,37);
-
     //If sats kollar om det blev vinst
     if (selectedNumber == winNumber)
     {   
@@ -318,15 +317,16 @@ class Program
                 Write("Spela igen? (ja/nej): ");
                 string playAgain = Console.ReadLine().ToLower();
 
-                if (playAgain == "ja")
+                if (playAgain == "nej")
                 {
-                    return;
+                    WriteLine("Tack för att du spelade !");
+                    return;exit hela program
                 }
-                else if (playAgain == "nej")
+                else if (playAgain == "ja")
                 {
-                    break;
+                    break;// börja om spel meny
                 }
-                WriteLine("Tack för att du spelade !");
+        
             }
 
            // WriteLine("Fyll på ditt konto $0.");
@@ -346,7 +346,8 @@ class Program
 
         Random random = new Random();
         int winNumber = random.Next(0, 37);
-
+        int slump = -1; 
+    // deklarerar slump variable ,säkerställer att `slump` har ett känt värde innan man försöker läsa från input 
         if (selected == "slump")
         {
             Write("Ange ditt eget nummer (0-36): ");
@@ -363,17 +364,17 @@ class Program
 
         Thread.Sleep(2000);
 
-        if ((selected == "slump" && betAmount == winNumber) ||
+        if ((selected == "slump" && slump == winNumber) ||
             (selected != "slump" && int.TryParse(selected, out int selectedNumber) && selectedNumber == winNumber))
         {
-            int winAmount = betAmount * 35;
+            int winAmount = betAmount;
             WriteLine($"Grattis! Du vann {winAmount}$ vinnande {winNumber} ({winColor}).");
             balance += winAmount;
             WriteLine($"Ditt saldo är: ${balance}");
         }
         else if ((selected == "red" || selected == "svart") && selected == winColor)
         {
-            int winAmount = betAmount * 2;
+           // int winAmount = betAmount * 2;
             WriteLine($"Grattis! Du vann på färgen {winColor} ({winNumber}).");
             balance += betAmount;
             WriteLine($"Ditt saldo är: ${balance}");
