@@ -361,8 +361,7 @@ class Program
 
         Thread.Sleep(2000);
 
-        if ((selected == "slump" && slump == winNumber) ||
-            (selected != "slump" && int.TryParse(selected, out int selectedNumber) && selectedNumber == winNumber))
+        if ((selected == "slump" && slump == winNumber) )
         {
             int winAmount = betAmount;
             WriteLine($"Grattis! Du vann {winAmount}$ vinnande {winNumber} ({winColor}).");
