@@ -113,7 +113,7 @@ class Program
 
         if ((selected == "slump" && slump == winNumber) )
         {
-            int winAmount = betAmount;
+            int winAmount = betAmount * 36;
             WriteLine($"Grattis! Du vann {winAmount}$ vinnande {winNumber} ({winColor}).");
             balance += winAmount;
             WriteLine($"Ditt saldo är: ${balance}");
